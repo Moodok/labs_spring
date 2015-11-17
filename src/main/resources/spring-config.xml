@@ -10,7 +10,7 @@
 
     <alias name="userServiceImpl" alias="userService"/>
     <alias name="productServiceImpl" alias="productService"/>
-
+    <alias name="marketFacadeImpl" alias="marketFacade"/>
 
     <bean id="userServiceImpl" class="ua.nure.melnyk.service.impl.UserServiceImpl">
         <property name="userDao" ref="storageUserDao"/>
@@ -20,5 +20,9 @@
         <property name="productDao" ref="storageProductDao"/>
     </bean>
 
+    <bean id="marketFacadeImpl" class="ua.nure.melnyk.facade.impl.MarketFacadeImpl">
+        <constructor-arg name="productService" ref="productService"/>
+        <constructor-arg name="userService" ref="userService"/>
+    </bean>
 
 </beans>
