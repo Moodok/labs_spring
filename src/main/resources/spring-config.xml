@@ -8,5 +8,17 @@
 
     <context:component-scan base-package="ua.nure.melnyk"/>
 
+    <alias name="userServiceImpl" alias="userService"/>
+    <alias name="productServiceImpl" alias="productService"/>
+
+
+    <bean id="userServiceImpl" class="ua.nure.melnyk.service.impl.UserServiceImpl">
+        <property name="userDao" ref="storageUserDao"/>
+    </bean>
+
+    <bean id="productServiceImpl" class="ua.nure.melnyk.service.impl.ProductServiceImpl">
+        <property name="productDao" ref="storageProductDao"/>
+    </bean>
+
 
 </beans>
