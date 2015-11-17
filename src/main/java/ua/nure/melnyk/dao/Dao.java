@@ -6,7 +6,7 @@ public interface Dao<T> {
 
     T getById(long id);
 
-    T update();
+    T update(T item);
 
     boolean delete(long id);
 

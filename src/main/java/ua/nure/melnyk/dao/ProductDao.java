@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ProductDao extends Dao<Product> {
 
-    List<Product> getByUserId();
+    List<Product> getByUserId(long id);
 
-    List<Product> getByTitle();
+    List<Product> getByTitle(String title);
 
 }
