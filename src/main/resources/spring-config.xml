@@ -1,10 +1,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-    	http://www.springframework.org/schema/context/spring-context.xsd">
+    	http://www.springframework.org/schema/context/spring-context.xsd
+    	http://www.springframework.org/schema/aop
+	    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy/>
+    <bean class="ua.nure.melnyk.aspect.LoggingAspect" p:configBean-ref="configBean"/>
 
     <context:component-scan base-package="ua.nure.melnyk"/>
 
@@ -24,5 +31,18 @@
         <constructor-arg name="productService" ref="productService"/>
         <constructor-arg name="userService" ref="userService"/>
     </bean>
+
+
+    <!-- this bean must not be lazily initialized if the exporting is to happen -->
+    <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+        <property name="beans">
+            <map>
+                <entry key="labBeans:name=configBean" value-ref="configBean"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="configBean" class="ua.nure.melnyk.mbean.Config" p:shouldLog="false"/>
+
 
 </beans>
