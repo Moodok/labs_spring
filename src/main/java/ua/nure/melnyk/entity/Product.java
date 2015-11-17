@@ -57,4 +57,15 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "description='" + description + '\'' +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", userId=" + userId +
+                '}';
+    }
 }

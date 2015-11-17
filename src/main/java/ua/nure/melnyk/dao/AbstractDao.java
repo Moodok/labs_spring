@@ -10,14 +10,12 @@ public abstract class AbstractDao {
     @Autowired
     private MarketStorage storage;
 
-    private AtomicLong atomicLong = new AtomicLong();
-
     public MarketStorage getStorage() {
         return storage;
     }
-    
+
     public long generateId() {
-        return atomicLong.incrementAndGet();
+        return getStorage().getAtomicLong().incrementAndGet();
     }
 
 }

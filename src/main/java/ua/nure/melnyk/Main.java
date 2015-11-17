@@ -28,6 +28,7 @@ public class Main {
     }
 
     public static void execute(Main main) throws InterruptedException {
+        System.out.println(main.marketFacade.getProductsByUserId(1));
         while (true) {
             main.marketFacade.deleteUser(1);
             main.userService.delete(1);

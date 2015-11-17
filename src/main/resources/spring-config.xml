@@ -10,10 +10,13 @@
     	http://www.springframework.org/schema/aop
 	    http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <context:property-placeholder location="classpath:config/local.properties" />
+
     <aop:aspectj-autoproxy/>
     <bean class="ua.nure.melnyk.aspect.LoggingAspect" p:configBean-ref="configBean"/>
 
     <context:component-scan base-package="ua.nure.melnyk"/>
+    <context:annotation-config/>
 
     <alias name="userServiceImpl" alias="userService"/>
     <alias name="productServiceImpl" alias="productService"/>
@@ -44,5 +47,8 @@
 
     <bean id="configBean" class="ua.nure.melnyk.mbean.Config" p:shouldLog="false"/>
 
+    <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller" >
+        <property name="mappingLocation" value="classpath:/config/mapping.xml" />
+    </bean>
 
 </beans>

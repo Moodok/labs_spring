@@ -1,0 +1,31 @@
+
+<mapping>
+
+    <class name="ua.nure.melnyk.entity.Products">
+
+        <field name="products" collection="arraylist" type="ua.nure.melnyk.entity.Product">
+            <bind-xml name="product" node="element"/>
+        </field>
+
+    </class>
+
+    <class name="ua.nure.melnyk.entity.Product">
+
+
+        <field name="userId" type="integer">
+            <bind-xml name="userId" node="attribute"/>
+        </field>
+
+        <field name="price" type="integer">
+            <bind-xml name="price" node="attribute"/>
+        </field>
+
+        <field name="title" type="string">
+            <bind-xml name="title" node="attribute"/>
+        </field>
+
+        <field name="description" type="string">
+            <bind-xml name="description" node="attribute"/>
+        </field>
+    </class>
+</mapping>
