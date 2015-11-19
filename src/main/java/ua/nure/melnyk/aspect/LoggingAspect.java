@@ -18,7 +18,7 @@ public class LoggingAspect {
 
     private Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    Config configBean;
+    private Config configBean;
 
     public void setConfigBean(Config configBean) {
         this.configBean = configBean;

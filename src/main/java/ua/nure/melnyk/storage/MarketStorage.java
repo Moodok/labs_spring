@@ -40,8 +40,8 @@ public class MarketStorage {
     private Unmarshaller unmarshaller;
 
     @PostConstruct
-    public void postConstruct() {
-        try (InputStream inputStream = MarketStorage.class.getResourceAsStream(productsXmlPath)) {
+    public void loadProducts() {
+        try (InputStream inputStream = MarketStorage.class.getClassLoader().getResourceAsStream(productsXmlPath)) {
             Products products = (Products) unmarshaller.unmarshal(new StreamSource(inputStream));
             for (Product product : products.getProducts()) {
                 product.setId(atomicLong.incrementAndGet());

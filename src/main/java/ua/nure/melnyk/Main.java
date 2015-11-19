@@ -19,7 +19,7 @@ public class Main {
     private UserService userService;
 
     @Autowired
-    private ProductDao productDao;
+    private ProductDao storageProductDao;
 
     public static void main(String[] args) throws InterruptedException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
@@ -32,7 +32,7 @@ public class Main {
         while (true) {
             main.marketFacade.deleteUser(1);
             main.userService.delete(1);
-            main.productDao.delete(1);
+            main.storageProductDao.delete(1);
             Thread.sleep(3000);
         }
     }

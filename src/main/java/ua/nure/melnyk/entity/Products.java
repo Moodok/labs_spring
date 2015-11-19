@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Products {
 
-    List<Product> products;
+    private List<Product> products;
 
     public List<Product> getProducts() {
         return products;

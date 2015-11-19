@@ -20,7 +20,7 @@ public class ProductServiceImplTest {
     @Mock
     private ProductDao productDao;
 
-    private Product product = new Product("title", "desc",10,1);
+    private Product product = new Product("title", "desc", 10, 1L);
 
     @Before
     public void before() {

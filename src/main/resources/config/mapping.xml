@@ -1,4 +1,3 @@
-
 <mapping>
 
     <class name="ua.nure.melnyk.entity.Products">
@@ -11,8 +10,7 @@
 
     <class name="ua.nure.melnyk.entity.Product">
 
-
-        <field name="userId" type="integer">
+        <field name="userId" type="long">
             <bind-xml name="userId" node="attribute"/>
         </field>
 

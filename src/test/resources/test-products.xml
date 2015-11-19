@@ -1,0 +1,5 @@
+<products>
+    <product userId="1" title="product1" price="10" description="desc1"/>
+    <product userId="1" title="product2" price="20" description="desc2"/>
+</products>
+

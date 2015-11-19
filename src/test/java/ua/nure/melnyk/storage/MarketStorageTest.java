@@ -18,9 +18,9 @@ public class MarketStorageTest {
 
     @Before
     public void before() {
-        product1 = new Product("product1", "desc1", 20, 1);
+        product1 = new Product("product1", "desc1", 20, 1L);
         storage.insertProduct(1, product1);
-        storage.insertProduct(2, new Product("product2", "desc2", 30, 2));
+        storage.insertProduct(2, new Product("product2", "desc2", 30, 2L));
 
         user1 = new User("name1", "email1", "number1");
         storage.insertUser(1, user1);
@@ -32,8 +32,8 @@ public class MarketStorageTest {
         Product productById = storage.getProductById(1);
         assertEquals("product1", productById.getTitle());
         assertEquals("desc1", productById.getDescription());
-        assertEquals(20, productById.getPrice());
-        assertEquals(1, productById.getUserId());
+        assertEquals(Integer.valueOf(20), productById.getPrice());
+        assertEquals(Long.valueOf(1L), productById.getUserId());
     }
 
     @Test
