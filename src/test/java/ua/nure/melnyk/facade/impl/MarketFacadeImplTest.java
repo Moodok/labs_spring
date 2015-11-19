@@ -123,7 +123,7 @@ public class MarketFacadeImplTest {
         product.setTitle("title");
         product.setDescription("desc");
         product.setPrice(10);
-        product.setUserId(1);
+        product.setUserId(1L);
     }
 
 }

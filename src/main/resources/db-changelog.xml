@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="yevhenii">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)"/>
+            <column name="email" type="varchar(50)"/>
+            <column name="phoneNumber" type="varchar(50)"/>
+        </createTable>
+        <rollback>
+            DROP TABLE IF EXISTS users;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2" author="yevhenii">
+        <createTable tableName="products">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(50)"/>
+            <column name="description" type="varchar(50)"/>
+            <column name="price" type="INT"/>
+            <column name="userId" type="BIGINT"/>
+        </createTable>
+        <rollback>
+            DROP TABLE IF EXISTS products;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

@@ -2,43 +2,43 @@ package ua.nure.melnyk.entity;
 
 public class Product {
 
-    private long id;
+    private Long id;
     private String title;
     private String description;
-    private int price;
-    private int userId;
+    private Integer price;
+    private Long userId;
 
     public Product() {
     }
 
-    public Product(String title, String description, int price, int userId) {
+    public Product(String title, String description, Integer price, Long userId) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.userId = userId;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

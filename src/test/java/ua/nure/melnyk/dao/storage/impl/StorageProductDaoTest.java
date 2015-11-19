@@ -33,11 +33,11 @@ public class StorageProductDaoTest {
 
     @Before
     public void before() {
-        product = new Product("title", "desc1", 20, 1);
-        product.setId(1);
+        product = new Product("title", "desc1", 20, 1L);
+        product.setId(1L);
         productDao.create(product);
 
-        product2 = new Product("title", "desc2", 20, 2);
+        product2 = new Product("title", "desc2", 20, 2L);
     }
 
     @Test
@@ -90,8 +90,8 @@ public class StorageProductDaoTest {
     private void assertProduct(Product product) {
         assertEquals("title", product.getTitle());
         assertEquals("desc1", product.getDescription());
-        assertEquals(20, product.getPrice());
-        assertEquals(1, product.getUserId());
+        assertEquals(Integer.valueOf(20), product.getPrice());
+        assertEquals(Long.valueOf(1L), product.getUserId());
         assertEquals(1, storage.getProducts().size());
     }
 

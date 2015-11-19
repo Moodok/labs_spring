@@ -10,13 +10,14 @@
     	http://www.springframework.org/schema/aop
 	    http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <context:property-placeholder location="classpath:config/local.properties" />
+    <import resource="classpath:spring-db.xml"/>
+
+    <context:property-placeholder location="classpath:config/local.properties"  ignore-unresolvable="true" />
 
     <aop:aspectj-autoproxy/>
     <bean class="ua.nure.melnyk.aspect.LoggingAspect" p:configBean-ref="configBean"/>
 
     <context:component-scan base-package="ua.nure.melnyk"/>
-    <context:annotation-config/>
 
     <alias name="userServiceImpl" alias="userService"/>
     <alias name="productServiceImpl" alias="productService"/>

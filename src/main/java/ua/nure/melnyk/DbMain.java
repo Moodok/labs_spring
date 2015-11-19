@@ -6,35 +6,27 @@ import org.springframework.stereotype.Component;
 import ua.nure.melnyk.dao.ProductDao;
 import ua.nure.melnyk.entity.Product;
 import ua.nure.melnyk.facade.MarketFacade;
-import ua.nure.melnyk.service.ProductService;
 import ua.nure.melnyk.service.UserService;
 
 @Component
-public class Main {
+public class DbMain {
 
     @Autowired
-    private MarketFacade marketFacade;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private ProductDao storageProductDao;
+    private ProductDao jdbcProductDao;
 
     public static void main(String[] args) throws InterruptedException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
-        Main main = (Main) context.getBean("main");
+        DbMain main = (DbMain) context.getBean("dbMain");
         execute(main);
     }
 
-    public static void execute(Main main) throws InterruptedException {
-        System.out.println(main.marketFacade.getProductsByUserId(1));
-        while (true) {
-            main.marketFacade.deleteUser(1);
-            main.userService.delete(1);
-            main.storageProductDao.delete(1);
-            Thread.sleep(3000);
-        }
+    public static void execute(DbMain main) throws InterruptedException {
+        Product product = new Product();
+        product.setTitle("title");
+        product.setPrice(10);
+        main.jdbcProductDao.create(product);
+        System.out.println(product);
+
     }
 
 }
