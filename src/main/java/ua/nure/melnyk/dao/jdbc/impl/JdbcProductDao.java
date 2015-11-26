@@ -41,7 +41,7 @@ public class JdbcProductDao implements ProductDao {
 
     @Override
     public Product create(Product item) {
-        String sql = "INSERT INTO products (title, description, price, userId) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO products (title, description, price, userId, amount) VALUES (?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -49,7 +49,8 @@ public class JdbcProductDao implements ProductDao {
             ps.setObject(k++, item.getTitle());
             ps.setObject(k++, item.getDescription());
             ps.setObject(k++, item.getPrice());
-            ps.setObject(k, item.getUserId());
+            ps.setObject(k++, item.getUserId());
+            ps.setObject(k++, item.getAmount());
             return ps;
         }, keyHolder);
         item.setId(keyHolder.getKey().longValue());
@@ -64,8 +65,9 @@ public class JdbcProductDao implements ProductDao {
 
     @Override
     public Product update(Product item) {
-        String sql = "UPDATE products SET title=?, description=?, price=?, userId=? WHERE id=?";
-        jdbcTemplate.update(sql, new Object[]{item.getTitle(), item.getDescription(), item.getPrice(), item.getUserId(), item.getId()});
+        String sql = "UPDATE products SET title=?, description=?, price=?, userId=?, amount=? WHERE id=?";
+        jdbcTemplate.update(sql, new Object[]{item.getTitle(), item.getDescription(), item.getPrice(), item.getUserId()
+                , item.getAmount(), item.getId()});
         return item;
     }
 

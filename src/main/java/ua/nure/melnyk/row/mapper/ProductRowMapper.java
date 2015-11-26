@@ -15,6 +15,7 @@ public class ProductRowMapper implements RowMapper<Product> {
     public static final String ID = "id";
     public static final String USER_ID = "userId";
     public static final String PRICE = "price";
+    public static final String AMOUNT = "amount";
 
     @Override
     public Product mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -24,6 +25,7 @@ public class ProductRowMapper implements RowMapper<Product> {
         product.setId(resultSet.getLong(ID));
         product.setUserId(resultSet.getLong(USER_ID));
         product.setPrice(resultSet.getInt(PRICE));
+        product.setAmount(resultSet.getInt(AMOUNT));
         return product;
     }
 

@@ -2,6 +2,7 @@ package ua.nure.melnyk.facade;
 
 import ua.nure.melnyk.entity.Product;
 import ua.nure.melnyk.entity.User;
+import ua.nure.melnyk.entity.UserAccount;
 
 import java.util.List;
 
@@ -106,4 +107,9 @@ public interface MarketFacade {
      */
     boolean deleteProduct(long id);
 
+    void updateBalance(Integer change, Long userId);
+
+    void buyProduct(Long productId, Long buyerId);
+
+    UserAccount getUserAccountByUserId(long id);
 }

@@ -10,10 +10,13 @@ import ua.nure.melnyk.entity.Product;
 import ua.nure.melnyk.entity.User;
 import ua.nure.melnyk.facade.MarketFacade;
 import ua.nure.melnyk.service.ProductService;
+import ua.nure.melnyk.service.UserAccountService;
 import ua.nure.melnyk.service.UserService;
 import ua.nure.melnyk.service.impl.UserServiceImpl;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,6 +30,9 @@ public class MarketFacadeImplTest {
     @Mock
     private UserService userService;
 
+    @Mock
+    private UserAccountService userAccountService;
+
     private Product product;
 
     private User user;
@@ -36,7 +42,7 @@ public class MarketFacadeImplTest {
         setProduct();
         setUser();
 
-        marketFacade = new MarketFacadeImpl(productService, userService);
+        marketFacade = new MarketFacadeImpl(productService, userService, userAccountService);
     }
 
     @Test
@@ -101,6 +107,7 @@ public class MarketFacadeImplTest {
 
     @Test
     public void shouldCreateUser() {
+        doReturn(new User()).when(userService).create(any());
         marketFacade.createUser(user);
         verify(userService).create(eq(user));
     }

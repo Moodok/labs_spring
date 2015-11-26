@@ -7,6 +7,7 @@ public class Product {
     private String description;
     private Integer price;
     private Long userId;
+    private Integer amount = 1;
 
     public Product() {
     }
@@ -16,6 +17,14 @@ public class Product {
         this.description = description;
         this.price = price;
         this.userId = userId;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
     public Integer getPrice() {

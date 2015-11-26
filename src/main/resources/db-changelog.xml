@@ -41,4 +41,23 @@
         <addUniqueConstraint columnNames="title" tableName="products"/>
     </changeSet>
 
+    <changeSet id="5" author="yevhenii">
+        <createTable tableName="accounts">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="balance" type="INT"/>
+            <column name="userId" type="BIGINT"/>
+        </createTable>
+        <rollback>
+            DROP TABLE IF EXISTS accounts;
+        </rollback>
+    </changeSet>
+
+    <changeSet author="6" id="yevhenii">
+        <addColumn tableName="products">
+            <column name="amount" type="INT"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

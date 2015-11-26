@@ -23,6 +23,7 @@ public class JdbcProductDaoIntegrationTest extends BaseIntegrationTest {
         product.setPrice(10);
         product.setDescription("description");
         product.setUserId(1L);
+        product.setAmount(10);
     }
 
     @Test
@@ -54,6 +55,7 @@ public class JdbcProductDaoIntegrationTest extends BaseIntegrationTest {
         assertEquals(product.getDescription(), productById.getDescription());
         assertEquals(product.getPrice(), productById.getPrice());
         assertEquals(product.getUserId(), productById.getUserId());
+        assertEquals(product.getAmount(), productById.getAmount());
     }
 
     @Test(expected = EmptyResultDataAccessException.class)
