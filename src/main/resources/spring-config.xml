@@ -24,13 +24,15 @@
     <alias name="productServiceImpl" alias="productService"/>
     <alias name="userAccountServiceImpl" alias="userAccountService"/>
     <alias name="marketFacadeImpl" alias="marketFacade"/>
+    <alias name="jdbcUserDao" alias="userDao"/>
+    <alias name="jdbcProductDao" alias="productDao"/>
 
     <bean id="userServiceImpl" class="ua.nure.melnyk.service.impl.UserServiceImpl">
-        <property name="userDao" ref="storageUserDao"/>
+        <property name="userDao" ref="userDao"/>
     </bean>
 
     <bean id="productServiceImpl" class="ua.nure.melnyk.service.impl.ProductServiceImpl">
-        <property name="productDao" ref="storageProductDao"/>
+        <property name="productDao" ref="productDao"/>
     </bean>
 
     <bean id="userAccountServiceImpl" class="ua.nure.melnyk.service.impl.UserAccountServiceImpl">
