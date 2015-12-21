@@ -1,14 +1,24 @@
 package ua.nure.melnyk.entity;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class Product implements Serializable {
 
     private Long id;
+
+    @Size(min = 2, max = 30)
     private String title;
+
+    @NotNull
     private String description;
+
+    @NotNull
     private Integer price;
+
     private Long userId;
+
     private Integer amount = 1;
 
     public Product() {
