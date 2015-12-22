@@ -1,15 +1,15 @@
 package ua.nure.melnyk.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ua.nure.melnyk.entity.Product;
 import ua.nure.melnyk.entity.User;
@@ -62,4 +62,19 @@ public class HomeController {
         marketFacade.createProduct(product);
         return "redirect:/";
     }
+
+    @RequestMapping(method = RequestMethod.POST, path = "info/{id}")
+    public String getProductInfo(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("product", marketFacade.getProductById(id));
+        return "info";
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ModelAndView handleError(HttpServletRequest req, Exception exception) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("product", new Product());
+        mav.setViewName("info");
+        return mav;
+    }
+
 }

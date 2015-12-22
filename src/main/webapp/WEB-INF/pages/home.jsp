@@ -2,12 +2,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<script src="<c:url value="/resources/js/jquery-1.11.3.min.js" />"></script>
 
 <sec:authentication var="user" property="principal"/>
 Email:${user.email}
 <br>
 Name:${user.name}
 
+<br>
+<a href="<c:url value="/logout"/>">Logout</a>
 <br>
 
 
@@ -19,6 +22,7 @@ Name:${user.name}
         <td>description</td>
         <td>price</td>
         <td>amount</td>
+        <td>info</td>
     </tr>
     </thead>
     <c:forEach items="${userProducts}" var="product">
@@ -28,6 +32,9 @@ Name:${user.name}
             <td>${product.description}</td>
             <td>${product.price}</td>
             <td>${product.amount}</td>
+            <td>
+                <button onclick="onClick(${product.id});">Click me</button>
+            </td>
         </tr>
     </c:forEach>
 </table>
@@ -53,3 +60,20 @@ Name:${user.name}
     <form:button>Submit</form:button>
 
 </form:form>
+
+<br>
+
+<div id="placeholder"></div>
+
+
+<script>
+    function onClick(id) {
+        $.post("/info/" + id, function (data) {
+                    $("#placeholder").html(data);
+                })
+                .fail(function () {
+                    alert("fail");
+                });
+    }
+
+</script>

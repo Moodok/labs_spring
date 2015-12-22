@@ -13,6 +13,7 @@
         <intercept-url pattern="/fonts/**" access="permitAll"/>
 
         <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern="/info" access="permitAll"/>
         <intercept-url pattern="/**" access="hasRole('USER')"/>
 
         <form-login
@@ -21,6 +22,7 @@
                 authentication-failure-url="/login?error"/>
         <logout logout-success-url="/login"/>
 
+        <csrf disabled="true"/>
     </http>
 
 
