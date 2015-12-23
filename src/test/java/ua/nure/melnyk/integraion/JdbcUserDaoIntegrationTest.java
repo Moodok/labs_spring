@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import ua.nure.melnyk.dao.UserDao;
 import ua.nure.melnyk.entity.User;
 
@@ -62,5 +63,16 @@ public class JdbcUserDaoIntegrationTest extends BaseIntegrationTest {
 
         jdbcUserDao.create(user);
         jdbcUserDao.create(newUser);
+    }
+
+    @Test(expected = EmptyResultDataAccessException.class)
+    public void shouldRemoveUser() {
+        User newUser = new User();
+        newUser.setEmail("email");
+
+        jdbcUserDao.create(user);
+        jdbcUserDao.delete(user.getId());
+
+        jdbcUserDao.getById(user.getId());
     }
 }

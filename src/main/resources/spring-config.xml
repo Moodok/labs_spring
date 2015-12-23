@@ -46,21 +46,25 @@
     </bean>
 
 
-    <!-- this bean must not be lazily initialized if the exporting is to happen -->
-    <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
-        <property name="beans">
-            <map>
-                <entry key="labBeans:name=configBean" value-ref="configBean"/>
-            </map>
-        </property>
-    </bean>
 
     <bean id="configBean" class="ua.nure.melnyk.mbean.Config" p:shouldLog="false"/>
+
 
     <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
         <property name="mappingLocation" value="classpath:/config/mapping.xml"/>
     </bean>
 
     <bean id="dbProductLoader" class="ua.nure.melnyk.storage.DbProductLoader" init-method="loadProducts"/>
+
+    <beans profile="dev">
+        <!-- this bean must not be lazily initialized if the exporting is to happen -->
+        <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+            <property name="beans">
+                <map>
+                    <entry key="labBeans:name=configBean" value-ref="configBean"/>
+                </map>
+            </property>
+        </bean>
+    </beans>
 
 </beans>

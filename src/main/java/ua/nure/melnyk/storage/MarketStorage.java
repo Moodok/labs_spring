@@ -102,8 +102,4 @@ public class MarketStorage {
         map.put(PRODUCT + product.getId(), product);
     }
 
-    public void setProductsXmlPath(String productsXmlPath) {
-        this.productsXmlPath = productsXmlPath;
-    }
-
 }

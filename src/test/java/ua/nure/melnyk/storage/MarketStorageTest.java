@@ -2,6 +2,9 @@ package ua.nure.melnyk.storage;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.oxm.Unmarshaller;
 import ua.nure.melnyk.entity.Product;
 import ua.nure.melnyk.entity.User;
 
@@ -10,11 +13,15 @@ import static org.junit.Assert.assertTrue;
 
 public class MarketStorageTest {
 
+    @InjectMocks
     private MarketStorage storage = new MarketStorage();
 
     Product product1;
 
     User user1;
+
+    @Mock
+    Unmarshaller unmarshaller;
 
     @Before
     public void before() {
@@ -75,7 +82,7 @@ public class MarketStorageTest {
     }
 
     @Test
-    public void souldUpdateProduct() {
+    public void shouldUpdateProduct() {
         product1.setTitle("newTitle");
         storage.updateProduct(product1);
         Product productById = storage.getProductById(1);
